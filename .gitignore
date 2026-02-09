@@ -1,0 +1,24 @@
+# Prywatne notatki
+private_notes/
+*.draft.md
+
+# Duże pliki danych
+raw_data/*.csv
+*.csv
+!sample_data/*.csv
+
+# Power BI (jeśli za duży)
+*.pbix
+
+# System
+.DS_Store
+Thumbs.db
+
+# Tymczasowe
+*.tmp
+*.log
+
+# Mój prywatny kontekst i prompty - NIGDY NIE WRZUCAJ NA GITHUB
+context.md
+.context.md
+*.context.md
