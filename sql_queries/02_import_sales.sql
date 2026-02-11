@@ -1,11 +1,10 @@
--- Upewnij się, że pracujesz na bazie grocery_sales
+-- Dla pewności że pracuje sie na bazie grocery_sales
 USE grocery_sales;
 
--- Na wszelki wypadek usuń starą tabelę sales, jeśli istnieje
+--Usuwanie starej tabeli sales
 DROP TABLE IF EXISTS sales;
 
--- 1. Stwórz tabelę sales z odpowiednimi kolumnami
--- Uwaga: SalesDate jako VARCHAR, bo dane daty są uszkodzone / dziwne ("38:25.42" itd.)
+
 CREATE TABLE sales (
     SalesID INT,
     SalesPersonID INT,
@@ -18,9 +17,9 @@ CREATE TABLE sales (
     TransactionNumber VARCHAR(100)
 );
 
--- 2. Załaduj dane z pliku CSV
--- PODMIEŃ ŚCIEŻKĘ PONIŻEJ NA SWOJĄ:
-LOAD DATA LOCAL INFILE 'D:\Data Analyst\Projects\Portfolio_2026\01_Grocery_Sales\raw_datasales.csv'
+-- 2. Załadpwanie dane z pliku CSV
+
+LOAD DATA LOCAL INFILE 'ścieżka/do/pliku/sales.csv''
 INTO TABLE sales
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'

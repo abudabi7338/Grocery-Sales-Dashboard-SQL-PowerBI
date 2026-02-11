@@ -14,10 +14,13 @@ Dataset: 521 MB, 7 tabel, ~1M+ transakcji.
 ## Postęp
 - [x] Eksploracja danych
 - [x] Identyfikacja problemów jakościowych
-- [x] Znalezione błędy: TotalPrice = 0, SalesDate uszkodzony
-- [x] Import do MySQL
-- [ ] Czyszczenie danych
-- [ ] Zapytania analityczne
+- [x] Znalezione błędy: TotalPrice = 0, formaty SalesDate, niespójności IsAllergic
+- [x] Import do MySQL (1.2M wierszy)
+- [ ] Czyszczenie danych (W trakcie 🚧)
+  - [x] Oczyszczenie tabel słownikowych (categories, cities)
+  - [ ] Standaryzacja tabeli products (IsAllergic, obsługa NULL)
+  - [ ] Naprawa tabeli faktów sales (wyliczenie poprawnego Revenue)
+- [ ] Zapytania analityczne i KPI
 - [ ] Dashboard Power BI
 
 ## 🛠️ Wyzwania techniczne: Import danych
