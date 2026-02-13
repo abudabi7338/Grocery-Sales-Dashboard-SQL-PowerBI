@@ -24,7 +24,7 @@ FROM categories
 ORDER BY CategoryID
 
 
--- 1. CITIES
+-- 2. CITIES
 -- =====================================================
 -- Status: Tabela czysta, brak NULL-i i duplikatów
 -- Action: Tylko TRIM jako zabezpieczenie
@@ -36,3 +36,19 @@ ZipCode,
 CountryID
 FROM cities
 ORDER BY CityID
+
+
+
+-- 3. COUNTRIES
+-- =====================================================
+-- Status: Tabela czysta, brak NULL-i i duplikatów
+-- Action: Tylko TRIM jako zabezpieczenie
+
+    
+    SELECT 
+    CountryID,
+    TRIM(CountryName) AS CountryName,
+    TRIM(CountryCode) AS CountryCode
+
+    FROM countries
+    ORDER BY CountryID
