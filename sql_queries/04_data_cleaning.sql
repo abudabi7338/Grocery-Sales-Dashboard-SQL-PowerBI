@@ -1,54 +1,118 @@
 -- =====================================================
--- TABLE OF CONTENTS
--- =====================================================
--- 1. CATEGORIES     (line 15)  - TRIM, no major issues
-
-
--- =====================================================
 -- DATA CLEANING - grocery_sales Database
 -- Author: [Twoje imię]
 -- Date: 11-02-2026
 -- Purpose: Standaryzacja i czyszczenie tabel przed Power BI
 -- =====================================================
 
+-- =====================================================
+-- TABLE OF CONTENTS
+-- =====================================================
+-- 1. CATEGORIES  - TRIM, no major issues
+-- 2. CITIES      - TRIM, no major issues
+-- 3. COUNTRIES   - TRIM, no major issues
+-- 4. CUSTOMERS   - TRIM, NULL w MiddleInitial (akceptowalne)
+-- 5. EMPLOYEES   - TRIM, no major issues
+-- 6. PRODUCTS    - TODO
+-- 7. SALES       - TODO
+-- =====================================================
 
+
+-- =====================================================
 -- 1. CATEGORIES
 -- =====================================================
 -- Status: Tabela czysta, brak NULL-i i duplikatów
 -- Action: Tylko TRIM jako zabezpieczenie
 
 SELECT
-     CategoryID,
-     TRIM(CategoryName) as CategoryName
+    CategoryID,
+    TRIM(CategoryName) AS CategoryName
 FROM categories
-ORDER BY CategoryID
+ORDER BY CategoryID;
+
+-- Eksport do: categories_clean.csv
 
 
+-- =====================================================
 -- 2. CITIES
 -- =====================================================
 -- Status: Tabela czysta, brak NULL-i i duplikatów
 -- Action: Tylko TRIM jako zabezpieczenie
 
 SELECT
-CityID,
-TRIM(CityName) AS CityName,
-ZipCode,
-CountryID
+    CityID,
+    TRIM(CityName) AS CityName,
+    ZipCode,
+    CountryID
 FROM cities
-ORDER BY CityID
+ORDER BY CityID;
+
+-- Eksport do: cities_clean.csv
 
 
-
+-- =====================================================
 -- 3. COUNTRIES
 -- =====================================================
 -- Status: Tabela czysta, brak NULL-i i duplikatów
 -- Action: Tylko TRIM jako zabezpieczenie
 
-    
-    SELECT 
+SELECT 
     CountryID,
     TRIM(CountryName) AS CountryName,
     TRIM(CountryCode) AS CountryCode
+FROM countries
+ORDER BY CountryID;
 
-    FROM countries
-    ORDER BY CountryID
+-- Eksport do: countries_clean.csv
+
+
+-- =====================================================
+-- 4. CUSTOMERS
+-- =====================================================
+-- Status: Tabela czysta, NULL w MiddleInitial (akceptowalne - nie każdy ma drugie imię)
+-- Action: TRIM na kolumnach tekstowych
+
+SELECT 
+    CustomerID,
+    TRIM(FirstName) AS FirstName,
+    TRIM(MiddleInitial) AS MiddleInitial,
+    TRIM(LastName) AS LastName,
+    CityID,
+    TRIM(Address) AS Address
+FROM customers
+ORDER BY CustomerID;
+
+-- Eksport do: customers_clean.csv
+
+
+-- =====================================================
+-- 5. EMPLOYEES
+-- =====================================================
+-- Status: Tabela czysta, brak NULL-i i duplikatów
+-- Action: TRIM na kolumnach tekstowych
+
+SELECT
+    EmployeeID,
+    TRIM(FirstName) AS FirstName,
+    TRIM(MiddleInitial) AS MiddleInitial,
+    TRIM(LastName) AS LastName,
+    BirthDate,
+    Gender,
+    CityID,
+    HireDate
+FROM employees
+ORDER BY EmployeeID;
+
+-- Eksport do: employees_clean.csv
+
+
+-- =====================================================
+-- 6. PRODUCTS
+-- =====================================================
+-- TODO: Sprawdzenie i czyszczenie kolumn IsAllergic oraz Class
+
+
+-- =====================================================
+-- 7. SALES
+-- =====================================================
+-- TODO: Wyliczenie Revenue (Quantity * Price * (1 - Discount))
