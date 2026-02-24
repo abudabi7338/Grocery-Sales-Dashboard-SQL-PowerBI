@@ -109,10 +109,24 @@ ORDER BY EmployeeID;
 -- =====================================================
 -- 6. PRODUCTS
 -- =====================================================
--- TODO: Sprawdzenie i czyszczenie kolumn IsAllergic oraz Class
+-- Status: Tabela czysta, brak NULL-i i duplikatów
+-- Action: TRIM na kolumnach tekstowych
+SELECT 
+     ProductID,
+    TRIM(ProductName) AS ProductName,
+    Price,
+    CategoryID,
+    TRIM(Class) AS Class,
+    ModifyDate,
+    TRIM(Resistant) AS Resistant,
+    TRIM(IsAllergic) AS IsAllergic,
+    VitalityDays
 
+FROM products
+ORDER BY ProductID;
+
+-- Eksport do: products_clean.csv
 
 -- =====================================================
 -- 7. SALES
 -- =====================================================
--- TODO: Wyliczenie Revenue (Quantity * Price * (1 - Discount))

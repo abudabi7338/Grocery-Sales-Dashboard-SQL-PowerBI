@@ -242,6 +242,133 @@ LEFT JOIN cities
 WHERE cities.CityID IS NULL;
 -- WYNIK: 0 wierszy → relacja OK ✓
 
+
+-- =====================================================
+-- 6. PRODUCTS
+-- =====================================================
+
+--sprawdzenie czy ProductID sie powtarza
+SELECT ProductID,
+    COUNT(ProductID) AS CountProductID
+FROM products
+GROUP BY ProductID
+HAVING CountProductID > 1;
+-- WYNIK: 0 wierszy → brak duplikatów ✓
+
+
+--sprawdzenie ProductName NULL i ''
+
+SELECT ProductName
+FROM products
+WHERE ProductName = '' OR ProductName IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+--sprawdzenie ProductName czy się coś powtarza
+
+SELECT ProductName,
+    COUNT(ProductName) AS CountProductName
+FROM products
+GROUP BY ProductName
+HAVING CountProductName > 1;
+-- WYNIK: 0 wierszy → brak powtórzeń ✓
+
+
+--sprawdzenie Price NULL i ''
+
+SELECT Price
+FROM products
+WHERE Price = '' OR Price IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+
+--sprawdzenie CategoryID NULL i ''
+SELECT CategoryID
+FROM products
+WHERE CategoryID = '' OR CategoryID IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+
+--sprawdzenie relacji LEFT JOIN categories.CategoryID z products.CategoryID
+SELECT categories.CategoryID, 
+    products.CategoryID
+    FROM products
+
+    LEFT JOIN categories 
+            ON categories.CategoryID = products.CategoryID
+    WHERE categories.CategoryID IS NULL
+-- WYNIK: 0 wierszy → relacja OK ✓
+
+
+--sprawdzenie Class NULL i ''
+SELECT Class
+FROM products
+WHERE Class = '' OR Class IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+--sprawdzenie Class jakie są wartości
+SELECT Class,
+        COUNT(*) AS ile
+FROM products
+GROUP BY Class
+-- WYNIK: 3 wartości: Medium, Low, High
+
+
+
+--sprawdzenie ModifyDate NULL i ''
+SELECT ModifyDate
+FROM products
+WHERE ModifyDate = '' OR ModifyDate IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+
+--sprawdzenie Resistant NULL i ''
+SELECT Resistant
+FROM products
+WHERE Resistant = '' OR Resistant IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+
+--sprawdzenie Resistant jakie są wartości
+SELECT Resistant,
+        COUNT(*) AS ile
+FROM products
+GROUP BY Resistant
+-- WYNIK: 3 wartości: Durable, Unknown, Weak
+
+
+--sprawdzenie IsAllergic NULL i ''
+SELECT IsAllergic
+FROM products
+WHERE IsAllergic = '' OR IsAllergic IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+
+--sprawdzenie IsAllergic jakie są wartości
+SELECT IsAllergic,
+        COUNT(*) AS ile
+FROM products
+GROUP BY IsAllergic
+-- WYNIK: 3 wartości: Unknown, False, True
+
+--sprawdzenie VitalityDays NULL i ''
+SELECT VitalityDays
+FROM products
+WHERE VitalityDays IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+--sprawdzenie VitalityDays < 0 
+SELECT VitalityDays
+FROM products
+WHERE VitalityDays < 0 
+-- WYNIK: 0 wierszy → brak wartości ujemnych ✓
+
+
+
+
+
+
+
+
 -- PODSUMOWANIE: Tabela employees jest czysta.
 -- Brak duplikatów, NULL-i i błędów logicznych.
 -- Relacja z cities OK.
@@ -252,4 +379,4 @@ WHERE cities.CityID IS NULL;
 -- Wszystkie tabele wymiarów są czyste i gotowe do użycia.
 -- Jedyny NULL: MiddleInitial w customers (akceptowalne).
 -- Wszystkie relacje z cities są poprawne.
--- =====================================================
+-- =====================================================-
