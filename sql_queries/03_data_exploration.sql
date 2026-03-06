@@ -470,13 +470,13 @@ WHERE MOD(Quantity, 1) > 0
 
 
 
---sprawdzenie Discount NULL i ''
+--sprawdzenie Discount NULL 
 
 SELECT Discount
 FROM sales
 WHERE Discount IS NULL
 
--- WYNIK: 0 wierszy → brak NULL, '' 
+-- WYNIK: 0 wierszy → brak NULL
 
 
 
@@ -518,6 +518,44 @@ SELECT SalesDate
 FROM sales
 WHERE SalesDate IS NULL
 -- WYNIK: 0 wierszy → brak NULL
+
+
+
+--SalesDate: sprawdzenie czy można wyciągnąc same daty bez godzin
+
+SELECT DATE(SalesDate) 
+FROM sales
+LIMIT 300
+
+-- WYNIK: można 
+
+--SalesDate: sprawdzenie czy nie ma dat przyszłych
+
+SELECT DATE(SalesDate) 
+FROM sales
+WHERE  SalesDate > CURDATE()
+-- WYNIK: nie ma dat przyszłych
+
+
+--sprawdzenie TransactionNumber NULL i ''
+
+SELECT TransactionNumber
+FROM sales
+WHERE TransactionNumber IS NULL OR TransactionNumber = ''
+
+-- WYNIK: 0 wierszy → brak NULL oraz ''
+
+
+--sprawdzenie TransactionNumber duplikaty
+
+SELECT TransactionNumber, 
+       COUNT(TransactionNumber) AS Count_TransactionNumber
+FROM sales
+GROUP BY TransactionNumber
+HAVING COUNT(TransactionNumber) > 1
+
+-- WYNIK: 0 wierszy → brak NULL oraz ''
+
 
 
 
