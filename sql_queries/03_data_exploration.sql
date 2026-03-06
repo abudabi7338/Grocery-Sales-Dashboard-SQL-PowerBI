@@ -365,7 +365,159 @@ WHERE VitalityDays < 0
 
 
 
+-- =====================================================
+-- 7. SALES
+-- =====================================================
 
+--sprawdzenie SalesID NULL i ''
+
+SELECT SalesID
+FROM sales
+WHERE SalesID = '' OR SalesID IS NULL;
+
+
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+
+--sprawdzenie SalesID czy sie powtarza ID
+
+SELECT COUNT(SalesID) AS Count_SalesID
+FROM sales
+GROUP BY SalesID
+HAVING Count_SalesID > 1
+
+
+-- WYNIK: 0 wierszy → brak powtórzeń ✓
+
+
+--sprawdzenie SalesPersonID NULL i ''
+
+SELECT SalesPersonID
+FROM sales
+WHERE SalesPersonID = '' OR SalesPersonID IS NULL;
+
+
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+
+--sprawdzenie sales.SalesPErsonID z employees.EmployeesID
+
+SELECT SalesPersonID, 
+       employees.EmployeeID
+       
+
+FROM sales
+
+LEFT JOIN employees ON sales.SalesPersonID = employees.EmployeeID
+WHERE employees.EmployeeID IS NULL
+
+
+
+-- WYNIK: 0 wierszy → niezgodnoscci miedzy tabelami ✓
+
+
+
+
+
+--sprawdzenie sales.CustomerID z customers.CustomerID
+
+SELECT sales.CustomerID, 
+       customers.CustomerID
+       
+
+FROM sales
+
+LEFT JOIN customers ON sales.CustomerID = customers.CustomerID
+WHERE customers.CustomerID IS NULL
+
+-- WYNIK: 0 wierszy → niezgodnoscci miedzy tabelami ✓
+
+
+
+--sprawdzenie sales.ProductID z produc.ProductID
+
+SELECT sales.ProductID, 
+       products.ProductID
+       
+
+FROM sales
+
+LEFT JOIN products ON sales.ProductID = products.ProductID
+WHERE products.ProductID IS NULL
+
+-- WYNIK: 0 wierszy → niezgodnoscci miedzy tabelami ✓
+
+
+
+--sprawdzenie quantify NULL i '' oraz wartosci 0 lub ujemne
+
+SELECT Quantity
+FROM sales
+WHERE Quantity = '' OR Quantity IS NULL OR Quantity <= 0
+
+-- WYNIK: 0 wierszy → brak NULL, '' oraz <= 0 ✓
+
+
+
+--sprawdzenie czy Quantity sa liczby z przecinkami
+
+SELECT Quantity,
+        MOD(Quantity, 1)
+FROM sales
+WHERE MOD(Quantity, 1) > 0  
+
+-- WYNIK: 0 wierszy → wartsoci z przecikami, 
+
+
+
+--sprawdzenie Discount NULL i ''
+
+SELECT Discount
+FROM sales
+WHERE Discount IS NULL
+
+-- WYNIK: 0 wierszy → brak NULL, '' 
+
+
+
+
+--sprawdzenie Discount < 0 lub < 1
+
+SELECT Discount
+FROM sales
+WHERE Discount > 1 OR Discount < 0
+
+-- WYNIK: 0 wierszy → Dicount w porządku
+
+
+
+-- TotalPrice: Sprawdzenie NULL
+SELECT TotalPrice FROM sales WHERE TotalPrice IS NULL;
+-- WYNIK: 0 wierszy → brak NULL ✓
+
+-- TotalPrice: Liczenie wierszy z wartością 0
+SELECT COUNT(*) AS Ile_Zer 
+FROM sales 
+WHERE TotalPrice = 0;
+-- WYNIK: 6,758,125 wierszy → WSZYSTKIE mają 0! 
+
+
+-- TotalPrice: Sprawdzenie wartości > 0 lub < 0
+SELECT TotalPrice 
+FROM sales 
+WHERE TotalPrice > 0 OR TotalPrice < 0;
+-- WYNIK: 0 wierszy → brak wartości != 0
+
+-- WNIOSEK: Kolumna TotalPrice jest bezużyteczna (same zera).
+-- AKCJA: Trzeba wyliczyć Revenue = Quantity × Price × (1 - Discount)
+
+
+--SalesDate: sprawdzenie NULL
+
+SELECT SalesDate 
+FROM sales
+WHERE SalesDate IS NULL
+-- WYNIK: 0 wierszy → brak NULL
 
 
 
