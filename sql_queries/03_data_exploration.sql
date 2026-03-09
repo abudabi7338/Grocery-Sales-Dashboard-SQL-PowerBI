@@ -242,6 +242,10 @@ LEFT JOIN cities
 WHERE cities.CityID IS NULL;
 -- WYNIK: 0 wierszy → relacja OK ✓
 
+-- PODSUMOWANIE: Tabela employees jest czysta.
+-- Brak duplikatów i błędów logicznych.
+-- Relacja z cities OK.
+
 
 -- =====================================================
 -- 6. PRODUCTS
@@ -362,6 +366,10 @@ FROM products
 WHERE VitalityDays < 0 
 -- WYNIK: 0 wierszy → brak wartości ujemnych ✓
 
+-- PODSUMOWANIE: Tabela products  jest czysta.
+-- Brak duplikatów i błędów logicznych.
+-- Relacja z innymi tabelami OK
+--z kolumny ModifyDAte można wyciągnąc samą datę bez czasu
 
 
 
@@ -556,12 +564,12 @@ HAVING COUNT(TransactionNumber) > 1
 
 -- WYNIK: 0 wierszy → brak NULL oraz ''
 
-
-
-
--- PODSUMOWANIE: Tabela employees jest czysta.
+-- PODSUMOWANIE: Tabela sales jest czysta.
 -- Brak duplikatów, NULL-i i błędów logicznych.
--- Relacja z cities OK.
+-- Relacja z innymi tabelami OK.
+-- z kolumny ModifyDAte można wyciągnąc samą datę bez czasu
+-- kolumna TotalPrice beużytwczna ponieważ tam są samne 0
+
 
 -- =====================================================
 -- PODSUMOWANIE OGÓLNE
@@ -569,4 +577,5 @@ HAVING COUNT(TransactionNumber) > 1
 -- Wszystkie tabele wymiarów są czyste i gotowe do użycia.
 -- Jedyny NULL: MiddleInitial w customers (akceptowalne).
 -- Wszystkie relacje z cities są poprawne.
+-- kolumna TotalPrice beużytwczna ponieważ tam są samne 0
 -- =====================================================-
