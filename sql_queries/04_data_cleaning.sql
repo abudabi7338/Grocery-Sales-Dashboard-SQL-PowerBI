@@ -130,3 +130,28 @@ ORDER BY ProductID;
 -- =====================================================
 -- 7. SALES
 -- =====================================================
+
+-- Status: TotalPrice = 0 (błąd danych)
+-- Action: Wyliczenie Revenue = Quantity × Price × (1 - Discount)
+--         Wyciągnięcie samej daty (bez godzin)
+--         JOIN z products dla pobrania ceny
+
+SELECT sales.salesID,
+       sales.SalesPersonID,   
+       sales.CustomerID,   
+       sales.ProductID,   
+       sales.Quantity ,   
+       sales.Discount, 
+       products.Price,  
+       (sales.Quantity * products.Price * (1 - sales.Discount)) AS Revenue,
+       DATE(sales.SalesDate) AS SalesDate
+
+FROM sales
+
+INNER JOIN products ON sales.ProductID = products.ProductID
+ORDER BY sales.SalesID;
+LIMIT 100
+
+-- Eksport do: sales_clean.csv
+
+
