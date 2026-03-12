@@ -16,7 +16,7 @@ Dataset: 521 MB, 7 tabel, ~1M+ transakcji.
 - [x] Identyfikacja problemów jakościowych
 - [x] Znalezione błędy: TotalPrice = 0, formaty SalesDate, niespójności IsAllergic
 - [x] Import do MySQL (1.2M wierszy)
-- [ ] Czyszczenie danych 
+- [x] Czyszczenie danych 
   - [x] Oczyszczenie tabel słownikowych (categories, cities)
   - [x] Standaryzacja tabeli products (IsAllergic, obsługa NULL)
   - [x] Naprawa tabeli faktów sales (wyliczenie poprawnego Revenue)
