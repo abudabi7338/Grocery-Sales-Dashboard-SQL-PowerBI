@@ -136,6 +136,11 @@ ORDER BY ProductID;
 --         Wyciągnięcie samej daty (bez godzin)
 --         JOIN z products dla pobrania ceny
 
+
+
+
+CREATE TABLE sales_clean 
+
 SELECT sales.salesID,
        sales.SalesPersonID,   
        sales.CustomerID,   
@@ -143,15 +148,15 @@ SELECT sales.salesID,
        sales.Quantity ,   
        sales.Discount, 
        products.Price,  
-       (sales.Quantity * products.Price * (1 - sales.Discount)) AS Revenue,
+       ROUND((sales.Quantity * products.Price * (1 - sales.Discount)), 2) AS Revenue,
        DATE(sales.SalesDate) AS SalesDate
 
 FROM sales
 
 INNER JOIN products ON sales.ProductID = products.ProductID
-ORDER BY sales.SalesID;
-LIMIT 100
+WHERE SalesDate > '1900-01-01'
 
 -- Eksport do: sales_clean.csv
+
 
 
