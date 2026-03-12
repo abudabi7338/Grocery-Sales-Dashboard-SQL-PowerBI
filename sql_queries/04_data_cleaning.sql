@@ -156,7 +156,4 @@ FROM sales
 INNER JOIN products ON sales.ProductID = products.ProductID
 WHERE SalesDate > '1900-01-01'
 
--- Eksport do: sales_clean.csv
-
-
-
+--CREATE TABLE sales_clean.csv

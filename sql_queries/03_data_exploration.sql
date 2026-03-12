@@ -579,3 +579,4 @@ HAVING COUNT(TransactionNumber) > 1
 -- Wszystkie relacje z cities są poprawne.
 -- kolumna TotalPrice beużytwczna ponieważ tam są samne 0
 -- =====================================================-
+
