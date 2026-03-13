@@ -58,3 +58,25 @@ FROM sales_clean
 GROUP BY DateSales
 
 ORDER BY DateSales ASC;
+
+
+-- 4. SALES BY DAY OF WEEK
+-- =====================================================
+-- Question: "On which day of the week do customers make the most purchases?"
+
+SELECT
+       DAYNAME(SalesDate) AS DayWeek,
+       ROUND(SUM(Revenue), 2) AS TotalDayRevenue
+
+FROM sales_clean
+GROUP BY DAYNAME(SalesDate)
+ORDER BY TotalDayRevenue DESC;
+
+
+
+
+
+
+SELECT *
+FROM sales_clean
+LIMIT 500;
