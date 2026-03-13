@@ -74,9 +74,19 @@ ORDER BY TotalDayRevenue DESC;
 
 
 
+-- 5. REVENUE BY CATEGORY
+-- =====================================================
+-- Question: "On which day of the week do customers make the most purchases?"
 
 
+SELECT categories.CategoryName,
+       ROUND(SUM(Revenue), 2) AS TotalRevenue,
+       SUM(sales_clean.Quantity) AS TotalQuantity
 
-SELECT *
+
 FROM sales_clean
-LIMIT 500;
+JOIN products ON sales_clean.ProductID = products.ProductID
+JOIN categories ON products.CategoryID = categories.CategoryID
+
+GROUP BY categories.CategoryName
+ORDER BY TotalRevenue DESC;
