@@ -421,7 +421,7 @@ WHERE employees.EmployeeID IS NULL
 
 
 
--- WYNIK: 0 wierszy → niezgodnoscci miedzy tabelami ✓
+-- WYNIK: 0 wierszy → brak niezgodności, relacja OK ✓
 
 
 
@@ -544,6 +544,30 @@ FROM sales
 WHERE  SalesDate > CURDATE()
 -- WYNIK: nie ma dat przyszłych
 
+--sprawdzenie dat w innym złym fomracie
+SELECT DATE(SalesDate) AS SalesDate
+FROM sales
+WHERE SalesDate < '1900-01-01'
+--WYNIK: jest bardzo dużo dat w fomracie '0000-00-00'
+
+
+--sprawdzeenie i zlicznie dat w formacie '0000-00-00'
+SELECT COUNT(*) AS CountDate,
+       DATE(SalesDate) AS SalesDate
+
+FROM sales
+WHERE SalesDate < '1900-01-01'
+GROUP BY SalesDate
+--WYNIK: jest 67526 rekordów  formacie '0000-00-00'
+
+
+--zlicznie wszystkich dat
+SELECT COUNT(*) AS AllDate
+FROM sales
+--WYNIK: wszsytkich rekordów jest 6758125
+
+
+
 
 --sprawdzenie TransactionNumber NULL i ''
 
@@ -577,6 +601,10 @@ HAVING COUNT(TransactionNumber) > 1
 -- Wszystkie tabele wymiarów są czyste i gotowe do użycia.
 -- Jedyny NULL: MiddleInitial w customers (akceptowalne).
 -- Wszystkie relacje z cities są poprawne.
--- kolumna TotalPrice beużytwczna ponieważ tam są samne 0
+-- kolumna TotalPrice bezuzyteczna ponieważ tam są same 0
+-- kolumna DateSale w tabeli sales pojawiają się daty w formacie '0000-00-00'
+-- jest 67526 rekordó w formie dat '0000-00-00' co staanowi ok 1% wszystkich rekordów
+-- sprzedaż obejmuje tylko 5 miesięccy 01.2018- 05.2018
+
 -- =====================================================-
 

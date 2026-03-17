@@ -76,7 +76,7 @@ ORDER BY TotalDayRevenue DESC;
 
 -- 5. REVENUE BY CATEGORY
 -- =====================================================
--- Question: "On which day of the week do customers make the most purchases?"
+-- Question: "On which category earn most money?"
 
 
 SELECT categories.CategoryName,
@@ -90,3 +90,33 @@ JOIN categories ON products.CategoryID = categories.CategoryID
 
 GROUP BY categories.CategoryName
 ORDER BY TotalRevenue DESC;
+
+
+
+-- 6. IMPACT OF DICOUNT ON SALES
+-- =====================================================
+-- Question: "Bigger dicounnt =  biger sales?"
+
+SELECT Discount,
+       SUM(Quantity) AS TotalQuantity,
+       ROUND(SUM(Revenue), 2) AS TotalRevenue,
+       COUNT(*) AS OrderCount
+
+FROM sales_clean
+GROUP BY Discount
+ORDER BY Discount ASC;
+
+
+-- 7. TOP CUSTOMERS BY REVENUE
+-- =====================================================
+-- Question: "Which customers generate the most revenue?"
+
+SELECT sales_clean.CustomerID,
+       customers.FirstName,
+       customers.LastName,
+       ROUND(SUM(Revenue), 2) AS TotalRevenue
+FROM sales_clean
+INNER JOIN customers ON sales_clean.CustomerID = customers.CustomerID
+GROUP BY sales_clean.CustomerID, customers.FirstName, customers.LastName
+ORDER BY TotalRevenue DESC
+LIMIT 10;

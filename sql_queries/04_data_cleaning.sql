@@ -154,6 +154,7 @@ SELECT sales.salesID,
 FROM sales
 
 INNER JOIN products ON sales.ProductID = products.ProductID
-WHERE SalesDate > '1900-01-01'
+WHERE SalesDate > '1900-01-01' 
+--Zasosowanie filtra '1900-01-01' w celu wyeliminowania dat '0000-00-00' ponieważ takie się pojawiały
 
 --CREATE TABLE sales_clean.csv
