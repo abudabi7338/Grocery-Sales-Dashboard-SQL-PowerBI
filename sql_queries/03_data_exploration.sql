@@ -2,6 +2,41 @@
 -- DATA EXPLORATION - grocery_sales Database
 -- =====================================================
 
+
+-- =====================================================
+-- 0. DATA PROFILING - Database Overview
+-- =====================================================
+-- Purpose: Szybkie  sprawdzenie ilości rekordów
+
+SELECT 'categories' AS TableName, COUNT(*) AS RowCount FROM categories
+UNION ALL
+SELECT 'cities', COUNT(*) FROM cities
+UNION ALL
+SELECT 'countries', COUNT(*) FROM countries
+UNION ALL
+SELECT 'customers', COUNT(*) FROM customers
+UNION ALL
+SELECT 'employees', COUNT(*) FROM employees
+UNION ALL
+SELECT 'products', COUNT(*) FROM products
+UNION ALL
+SELECT 'sales', COUNT(*) FROM sales;
+
+-- WYNIK:
+-- | TableName  | RowCount  |
+-- |------------|-----------|
+-- | categories | 11        |
+-- | cities     | 96        |
+-- | countries  | 206       |
+-- | customers  | 98759     |
+-- | employees  | 23        |
+-- | products   | 452       |
+-- | sales      | 6,758,125 |
+
+
+
+
+
 -- =====================================================
 -- 1. CATEGORIES
 -- =====================================================
@@ -438,7 +473,7 @@ FROM sales
 LEFT JOIN customers ON sales.CustomerID = customers.CustomerID
 WHERE customers.CustomerID IS NULL
 
--- WYNIK: 0 wierszy → niezgodnoscci miedzy tabelami ✓
+-- WYNIK: 0 wierszy → brak niezgodności, relacja OK ✓
 
 
 
@@ -453,7 +488,7 @@ FROM sales
 LEFT JOIN products ON sales.ProductID = products.ProductID
 WHERE products.ProductID IS NULL
 
--- WYNIK: 0 wierszy → niezgodnoscci miedzy tabelami ✓
+-- WYNIK: 0 wierszy → brak niezgodności, relacja OK ✓
 
 
 
@@ -603,8 +638,7 @@ HAVING COUNT(TransactionNumber) > 1
 -- Wszystkie relacje z cities są poprawne.
 -- kolumna TotalPrice bezuzyteczna ponieważ tam są same 0
 -- kolumna DateSale w tabeli sales pojawiają się daty w formacie '0000-00-00'
--- jest 67526 rekordó w formie dat '0000-00-00' co staanowi ok 1% wszystkich rekordów
--- sprzedaż obejmuje tylko 5 miesięccy 01.2018- 05.2018
+-- jest 67526 rekordów w formie dat '0000-00-00' co stanowi ok 1% wszystkich rekordów. Wszsytkie rekordy to: 6758125
+-- sprzedaż obejmuje tylko 5 miesięcy 01.2018- 05.2018
 
--- =====================================================-
-
+-- =====================================================

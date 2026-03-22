@@ -49,15 +49,17 @@ WHERE Ranking = 1;
 -- =====================================================
 -- Question: "How sales changes over time?"
 
-SELECT  DATE_FORMAT(SalesDate, '%Y-%m-01') AS DateSales, --Date Format for PowerBI '%Y-%m-01'
+SELECT  DATE_FORMAT(SalesDate, '%Y-%m-01') AS DateSales, 
          ROUND(SUM(Revenue), 2) AS MonthRevenue,
-         COUNT(*)
-    
+         COUNT(*) AS OrderCount
 
 FROM sales_clean
 GROUP BY DateSales
 
 ORDER BY DateSales ASC;
+
+--Date Format for PowerBI '%Y-%m-01'
+
 
 
 -- 4. SALES BY DAY OF WEEK
@@ -114,9 +116,66 @@ ORDER BY Discount ASC;
 SELECT sales_clean.CustomerID,
        customers.FirstName,
        customers.LastName,
+       cities.CityName,
        ROUND(SUM(Revenue), 2) AS TotalRevenue
+
 FROM sales_clean
+
 INNER JOIN customers ON sales_clean.CustomerID = customers.CustomerID
-GROUP BY sales_clean.CustomerID, customers.FirstName, customers.LastName
+INNER JOIN cities ON cities.CityID = customers.CityID
+
+GROUP BY sales_clean.CustomerID, customers.FirstName, customers.LastName, cities.CityName 
 ORDER BY TotalRevenue DESC
 LIMIT 10;
+
+
+-- =====================================================
+-- 8. MONTH-OVER-MONTH REVENUE GROWTH
+-- =====================================================
+-- Question: "How does revenue change month to month 
+--            and what is the percentage growth?"
+
+
+   WITH MoM AS (
+              SELECT  DATE_FORMAT(SalesDate, '%Y-%m-01') AS DateSales, 
+         ROUND(SUM(Revenue), 2) AS MonthRevenue,
+         COUNT(*) AS OrderCount
+       FROM sales_clean
+       GROUP BY DateSales
+       ORDER BY DateSales ASC)
+
+SELECT DateSales,
+       MonthRevenue,
+       ROUND(
+       ((MonthRevenue - LAG(MonthRevenue) OVER (ORDER BY DateSales)) 
+       / LAG(MonthRevenue) OVER (ORDER BY DateSales)) * 100
+       , 2) AS GrowthPercent
+        
+FROM MoM
+ORDER BY DateSales ASC;
+
+
+-- =====================================================
+-- 9. EMPLOYEE PERFORMANCE RANKING
+-- =====================================================
+--Question: "Which sales employees generate the most revenue 
+--            and handle the most transactions?
+
+WITH RankTotal AS (
+SELECT employees.FirstName,
+       employees.LastName,
+       ROUND(SUM(Revenue), 2) AS TotalRevenue,
+       COUNT(*) AS CountTransaction,
+       DENSE_RANK() OVER (ORDER BY ROUND(SUM(Revenue), 2) DESC) AS RevenueRank,
+       DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS TransactionRank
+
+FROM sales_clean
+INNER JOIN employees ON sales_clean.SalesPersonID = employees.EmployeeID
+GROUP BY sales_clean.SalesPersonID, employees.FirstName, employees.LastName
+
+)
+
+SELECT *,
+       ROUND((RevenueRank +  TransactionRank)/ 2, 1) AS OverllRank
+FROM RankTotal
+ORDER BY OverllRank
