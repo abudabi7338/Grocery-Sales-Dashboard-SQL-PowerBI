@@ -179,3 +179,4 @@ SELECT *,
        ROUND((RevenueRank +  TransactionRank)/ 2, 1) AS OverllRank
 FROM RankTotal
 ORDER BY OverllRank
+
