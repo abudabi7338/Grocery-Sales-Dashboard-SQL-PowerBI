@@ -176,7 +176,6 @@ GROUP BY sales_clean.SalesPersonID, employees.FirstName, employees.LastName
 )
 
 SELECT *,
-       ROUND((RevenueRank +  TransactionRank)/ 2, 1) AS OverllRank
+       ROUND((RevenueRank +  TransactionRank)/ 2, 1) AS OverallRank
 FROM RankTotal
 ORDER BY OverllRank
-

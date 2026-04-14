@@ -1,6 +1,6 @@
 -- =====================================================
 -- DATA CLEANING - grocery_sales Database
--- Author: [Twoje imię]
+-- Author: Filip O.
 -- Date: 11-02-2026
 -- Purpose: Standaryzacja i czyszczenie tabel przed Power BI
 -- =====================================================
@@ -29,6 +29,7 @@ SELECT
     TRIM(CategoryName) AS CategoryName
 FROM categories
 ORDER BY CategoryID;
+
 
 -- Eksport do: categories_clean.csv
 
@@ -158,3 +159,5 @@ WHERE SalesDate > '1900-01-01'
 --Zasosowanie filtra '1900-01-01' w celu wyeliminowania dat '0000-00-00' ponieważ takie się pojawiały
 
 --CREATE TABLE sales_clean.csv
+
+

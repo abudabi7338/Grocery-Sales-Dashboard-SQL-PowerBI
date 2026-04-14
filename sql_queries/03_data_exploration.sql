@@ -559,7 +559,7 @@ WHERE TotalPrice > 0 OR TotalPrice < 0;
 
 SELECT SalesDate 
 FROM sales
-WHERE SalesDate IS NULL
+WHERE SalesDate IS NULL;
 -- WYNIK: 0 wierszy → brak NULL
 
 
@@ -567,8 +567,7 @@ WHERE SalesDate IS NULL
 --SalesDate: sprawdzenie czy można wyciągnąc same daty bez godzin
 
 SELECT DATE(SalesDate) 
-FROM sales
-LIMIT 300
+FROM sales;
 
 -- WYNIK: można 
 
@@ -583,7 +582,7 @@ WHERE  SalesDate > CURDATE()
 SELECT DATE(SalesDate) AS SalesDate
 FROM sales
 WHERE SalesDate < '1900-01-01'
---WYNIK: jest bardzo dużo dat w fomracie '0000-00-00'
+--WYNIK: jest bardzo dużo dat w formacie '0000-00-00'
 
 
 --sprawdzeenie i zlicznie dat w formacie '0000-00-00'
@@ -592,13 +591,13 @@ SELECT COUNT(*) AS CountDate,
 
 FROM sales
 WHERE SalesDate < '1900-01-01'
-GROUP BY SalesDate
+GROUP BY SalesDate;
 --WYNIK: jest 67526 rekordów  formacie '0000-00-00'
 
 
 --zlicznie wszystkich dat
 SELECT COUNT(*) AS AllDate
-FROM sales
+FROM sales;
 --WYNIK: wszsytkich rekordów jest 6758125
 
 
@@ -608,7 +607,7 @@ FROM sales
 
 SELECT TransactionNumber
 FROM sales
-WHERE TransactionNumber IS NULL OR TransactionNumber = ''
+WHERE TransactionNumber IS NULL OR TransactionNumber = '';
 
 -- WYNIK: 0 wierszy → brak NULL oraz ''
 
@@ -619,7 +618,7 @@ SELECT TransactionNumber,
        COUNT(TransactionNumber) AS Count_TransactionNumber
 FROM sales
 GROUP BY TransactionNumber
-HAVING COUNT(TransactionNumber) > 1
+HAVING COUNT(TransactionNumber) > 1;
 
 -- WYNIK: 0 wierszy → brak NULL oraz ''
 
