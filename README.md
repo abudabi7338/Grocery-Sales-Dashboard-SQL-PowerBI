@@ -1,15 +1,29 @@
 # Grocery Sales Analytics | SQL & Power BI End-to-End Project
 
-![Dashboard Page 1](/powerbi/images/Projet1_Page1.png)
-![Dashboard Page 2](/powerbi/images/Projet1_Page2.png)
-![Dashboard Page 3](/powerbi/images/Projet1_Page3.png)
-![Dashboard Page 4](/powerbi/images/Projet1_Page4.png)
-![Dashboard Page 5](/powerbi/images/Projet1_Page5.png)
-![Dashboard Page 6](/powerbi/images/Projet1_Page6.png)
-![Dashboard Page 7](/powerbi/images/Projet1_Page7.png)
-
 **🔗 [View Dashboard](#)** | **📄 [SQL Analysis](./sql_queries/)** | 📊 [Power BI Files](./powerbi/)
 🔗Kaggle: https://www.kaggle.com/datasets/andrexibiza/grocery-sales-dataset
+### Home
+![Dashboard Page 1](/powerbi/images/Projet1_Page1.png)
+
+### Overview Dashboard
+![Dashboard Page 2](/powerbi/images/Projet1_Page2.png)
+
+### Products Analysis
+![Dashboard Page 3](/powerbi/images/Projet1_Page3.png)
+
+### Trends & MoM Growth
+![Dashboard Page 4](/powerbi/images/Projet1_Page4.png)
+
+### Customer Segmentation
+![Dashboard Page 5](/powerbi/images/Projet1_Page5.png)
+
+### Insights & Patterns
+![Dashboard Page 6](/powerbi/images/Projet1_Page6.png)
+
+### Data Exploration
+![Dashboard Page 7](/powerbi/images/Projet1_Page7.png)
+
+
 
 > **Business Intelligence analysis of 6.7M transactions ($4.29B revenue) uncovering that 88% of income comes from non-discounted sales**
 

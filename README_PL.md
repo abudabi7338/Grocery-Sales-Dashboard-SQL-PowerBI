@@ -1,15 +1,24 @@
 # Analiza Sprzedaży Sklepów Spożywczych | SQL & Power BI
 
-![Dashboard Page 1](/powerbi/images/Projet1_Page1.png) 
-![Dashboard Page 2](/powerbi/images/Projet1_Page2.png) 
-![Dashboard Page 3](/powerbi/images/Projet1_Page3.png) 
-![Dashboard Page 4](/powerbi/images/Projet1_Page4.png)
-![Dashboard Page 5](/powerbi/images/Projet1_Page5.png) 
-![Dashboard Page 6](/powerbi/images/Projet1_Page6.png) 
-![Dashboard Page 7](/powerbi/images/Projet1_Page7.png)
-
 **🔗 [Zobacz Dashboard](#)** | **📄 [Analiza SQL](./sql_queries/)** | 📊 [Pliki Power BI](./powerbi/)
 🔗Kaggle: https://www.kaggle.com/datasets/andrexibiza/grocery-sales-dataset
+### Strona Główna
+![Dashboard Page 1](/powerbi/images/Projet1_Page1.png) 
+### Podsumowanie i KPI
+![Dashboard Page 2](/powerbi/images/Projet1_Page2.png) 
+### Analiza Produktów
+![Dashboard Page 3](/powerbi/images/Projet1_Page3.png) 
+### Trendy Sprzedaży Miesięcznej
+![Dashboard Page 4](/powerbi/images/Projet1_Page4.png)
+### Segment Klientów
+![Dashboard Page 5](/powerbi/images/Projet1_Page5.png) 
+### Wnioski i trendy
+![Dashboard Page 6](/powerbi/images/Projet1_Page6.png) 
+
+### Analiza danych
+![Dashboard Page 7](/powerbi/images/Projet1_Page7.png)
+
+
 
 > **Analiza 6,7 mln transakcji (przychód $4,29 mld) wykazała, że 88% dochodu pochodzi ze sprzedaży bez rabatów**
 
